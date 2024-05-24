@@ -19,7 +19,6 @@ public class ClientService {
     private static final String DECISION_KEY = "Decision_1";
     private static final String DIAGRAM_PATH = "/dmn/diagram_2.dmn";
     private static final String RESIDENT_CODE = "9909";
-    private static final String REGION_CODE = "24";
     private static final String DMN_STOP_FACTOR_RESULT = "stopFactorResult";
     private static final String DMN_DESCRIPTION = "description";
 
@@ -52,19 +51,18 @@ public class ClientService {
      */
     private Map<String, Object> buildRequest(ClientDataScoringDto clientDataScoringDto) {
         Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("physicalPerson", false);
+        requestMap.put("resident", false);
 
         if (clientDataScoringDto.getInn().length() == 12) {
             requestMap.put("physicalPerson", true);
-        }
-
-        if(clientDataScoringDto.getInn().startsWith(REGION_CODE)) {
-            requestMap.put("region", true);
         }
 
         if(clientDataScoringDto.getInn().startsWith(RESIDENT_CODE)) {
             requestMap.put("resident", true);
         }
 
+        requestMap.put("region", Long.valueOf(clientDataScoringDto.getInn().substring(0, 2)));
         requestMap.put("capital", clientDataScoringDto.getCapital());
 
         return requestMap;
