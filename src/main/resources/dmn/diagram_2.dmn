@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0wrpxav" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.23.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <decision id="Decision_1" name="Stop Factors">
+    <decisionTable id="DecisionTable_1513b5a" hitPolicy="COLLECT">
+      <input id="Input_1" label="physicalPerson" biodi:width="192" camunda:inputVariable="physicalPerson">
+        <inputExpression id="InputExpression_1" typeRef="boolean">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0vokqq3" label="region" biodi:width="192" camunda:inputVariable="region">
+        <inputExpression id="LiteralExpression_0o5xlci" typeRef="integer">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_09hem7u" label="capital" camunda:inputVariable="capital">
+        <inputExpression id="LiteralExpression_1cj3xgn" typeRef="integer">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0mu1uc9" label="resident" camunda:inputVariable="resident">
+        <inputExpression id="LiteralExpression_0n47l4z" typeRef="boolean">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="stopFactorResult" name="stopFactorResult" typeRef="boolean" biodi:width="192" />
+      <output id="OutputClause_0vbtzqf" label="description" name="description" typeRef="string" biodi:width="497" />
+      <rule id="DecisionRule_1d7rz7i">
+        <description></description>
+        <inputEntry id="UnaryTests_02uqaap">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uafuf3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uq3oju">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rqg35n">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qgexhg">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_03gcn57">
+          <text>"Компания является ИП"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1n0c0s4">
+        <description></description>
+        <inputEntry id="UnaryTests_0xvkadq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jgnt94">
+          <text>24</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0b443h7">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1w8k6mr">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1hy9wow">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1le7ium">
+          <text>"Компания находится в запрещенном регионе"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0rn930p">
+        <inputEntry id="UnaryTests_1ikcqro">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uzcu3q">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_141kmbq">
+          <text>&lt; 5000000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mkf5wk">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1v6xfvl">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0i01yze">
+          <text>"Капитал компании меньше 5 000 000"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1y4z4ee">
+        <inputEntry id="UnaryTests_0jxmap4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g3qxmo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0bymf4o">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uawpmb">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ojg684">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1m9zldw">
+          <text>"Компания не является резидентом РФ"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0mhpsbn">
+        <inputEntry id="UnaryTests_1qfcnzm">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00hfv7j">
+          <text>not(24)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jo6j52">
+          <text>&gt;= 5000000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08xp3pw">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08axzjo">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_02gun9q">
+          <text>"Стоп-факторы не найдены"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_1">
+        <dc:Bounds height="80" width="180" x="160" y="110" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
